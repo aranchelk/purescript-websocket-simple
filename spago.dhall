@@ -9,7 +9,6 @@ You can edit this file as you like.
   , "effect"
   , "exceptions"
   , "foreign"
-  , "generics-rep"
   , "nullable"
   , "psci-support"
   , "unsafe-coerce"

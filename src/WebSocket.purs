@@ -31,13 +31,13 @@ import Data.Enum (class BoundedEnum, class Enum, defaultSucc, defaultPred, toEnu
 import Foreign (unsafeFromForeign)
 import Data.Function.Uncurried (runFn2, Fn2)
 import Data.Functor.Invariant (imap)
-import Data.Generic.Rep (class Generic)
-import Data.Generic.Rep.Show (genericShow)
-import Data.Generic.Rep.Eq (genericEq)
-import Data.Generic.Rep.Ord (genericCompare)
 import Data.Maybe (Maybe(..), fromMaybe)
 import Data.Nullable (toNullable, Nullable)
 import Prelude (class Ord, compare, class Eq, eq, class Bounded, class Show, Unit, (<$>), (>>>), (>>=), ($))
+import Data.Generic.Rep (class Generic)
+import Data.Eq.Generic (genericEq)
+import Data.Ord.Generic (genericCompare)
+import Data.Show.Generic (genericShow)
 import Unsafe.Coerce (unsafeCoerce)
 
 foreign import specViolation :: forall a. String -> a
