@@ -3,11 +3,11 @@
 
 // module WebSocket
 
-exports.specViolation = function(s) {
+export const specViolation = function(s) {
   throw new Error(s);
-}
+};
 
-exports.newWebSocketImpl = function(url, protocols) {
+export const newWebSocketImpl = function(url, protocols) {
   return function() {
     var platformSpecific = {};
     if (typeof module !== "undefined" && module.require) {
@@ -67,4 +67,4 @@ exports.newWebSocketImpl = function(url, protocols) {
            , getSocket: function () { return socket }
            };
   }
-}
+};
