@@ -21,8 +21,9 @@ module WebSocket
   , BinaryType(..)
   ) where
 
+import Prelude
 import Effect (Effect)
-import Effect.Var (Var, GettableVar, SettableVar, makeVar, makeGettableVar, makeSettableVar)
+import Effect.Var (Var, GettableVar, SettableVar, makeVar, makeGettableVar, makeSettableVar, set)
 import Web.Event.EventTarget (eventListener, EventListener)
 import Web.Event.Internal.Types (Event)
 import Web.Socket.Event.CloseEvent (CloseEvent)
@@ -39,6 +40,7 @@ import Data.Eq.Generic (genericEq)
 import Data.Ord.Generic (genericCompare)
 import Data.Show.Generic (genericShow)
 import Unsafe.Coerce (unsafeCoerce)
+import Data.ArrayBuffer.Types as AB
 
 foreign import specViolation :: forall a. String -> a
 
@@ -47,7 +49,12 @@ foreign import data WebSocket :: Type
 
 -- | Initiate a websocket connection.
 newWebSocket :: URL -> Array Protocol -> Effect Connection
-newWebSocket url protocols = enhanceConnection <$> runFn2 newWebSocketImpl url protocols
+newWebSocket url protocols = do
+  x <- runFn2 newWebSocketImpl url protocols
+  -- x.setBinaryType "arraybuffer"
+  pure $ enhanceConnection x
+
+
 
 foreign import newWebSocketImpl :: Fn2 URL
                                                    (Array Protocol)
